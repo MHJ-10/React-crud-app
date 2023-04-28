@@ -6,7 +6,7 @@
 
  # Link
 
- view online:
+ view online: https://react-users-management.netlify.app/
 
  # Installation
  1. clone the repository

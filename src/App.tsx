@@ -1,19 +1,30 @@
 import React from "react";
-import {Routes, Route, Navigate} from "react-router-dom";
+import { Navigate, useRoutes} from "react-router-dom";
 import StateContext from "./hooks/stateContext";
 import UserForm from "./components/userForm";
 import UsersTable from "./components/usersTable";
 import NotFound from "./components/not-found";
 
 const App : React.FC = () => {
+  const router = useRoutes([
+    {
+     path: "/" , element: <UserForm />,
+    },
+    {
+      path: "/users", element: <UsersTable />,
+    },
+    {
+      path: "/not-found", element: <NotFound />,
+    },
+    {
+      path: "*", element: <Navigate to={"/not-found"} replace />,
+    }
+  ])
+
+
   return(
    <StateContext>
-    <Routes>
-      <Route path="/" element={<UserForm />} />
-      <Route path="/users" element={<UsersTable />} />
-      <Route path="/not-found" element={<NotFound/>} />
-      <Route path="*" element={<Navigate to="/not-found" replace />} />
-    </Routes>
+    {router}
    </StateContext>
   )
 }

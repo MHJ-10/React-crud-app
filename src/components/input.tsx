@@ -1,6 +1,5 @@
-import { Form } from 'react-bootstrap';
 import React from "react"
-
+import { Form } from 'react-bootstrap';
 
 interface IInput {
  id: string
@@ -8,11 +7,12 @@ interface IInput {
  type: string
  value?: number | string
  defaultValue?: number | string
+ width: number
  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 
-const Input = ({id, label, type, value, defaultValue, onChange} : IInput) => {
+const Input = ({id, label, type, value, defaultValue, width, onChange} : IInput) => {
 
     return (
         <Form.Group className='d-flex justify-content-center p-3'>
@@ -20,12 +20,12 @@ const Input = ({id, label, type, value, defaultValue, onChange} : IInput) => {
           {label}:
         </Form.Label>
         <Form.Control
-        id={id} 
-        type={type}
-        value={value}
-        defaultValue={defaultValue}
-        className='w-25'
-        onChange={onChange}
+         id={id} 
+         type={type}
+         value={value}
+         defaultValue={defaultValue}
+         className= {`w-${width}`}
+         onChange={onChange}
         />
       </Form.Group>
     )

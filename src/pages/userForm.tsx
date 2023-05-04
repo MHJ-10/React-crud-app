@@ -53,9 +53,6 @@ const UserForm = () => {
     setUsers([...users, newUser])
     localStorage.setItem('users', JSON.stringify([...users, newUser]));
   }
-  console.log(selectedOptions);
-  
-  
 
   return (
     <>

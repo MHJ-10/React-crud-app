@@ -1,23 +1,19 @@
 import React, {createContext, useState} from "react";
 
 export interface IUser {
-    id: number
+    id?: number | null
     fullName: string
     age: number
     skills: string[]
   }
 
 interface IAppContext {
-  user: IUser[]
-  setUser: React.Dispatch<React.SetStateAction<IUser[]>>
-  selectedOptions: number[]
-  setSelectedOptions: React.Dispatch<React.SetStateAction<number[]>>
-  fullName: string
-  setFullName: React.Dispatch<React.SetStateAction<string>>
-  age: number
-  setAge: React.Dispatch<React.SetStateAction<number>> 
-  skills: string[]
-  setSkills: React.Dispatch<React.SetStateAction<string[]>>
+  users: IUser[]
+  setUsers: React.Dispatch<React.SetStateAction<IUser[]>>
+  user: IUser
+  setUser: React.Dispatch<React.SetStateAction<IUser>>
+  selectedOptions: string[]
+  setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 interface IAppContextProps {
@@ -25,32 +21,23 @@ interface IAppContextProps {
 }
 
 export const AppContext = createContext<IAppContext>({
-    user: [],
+    users: [],
+    setUsers: () => {},
+    user: {id: 1, fullName: "", age: 1, skills: [""]} ,
     setUser: () => {},
     selectedOptions: [],
-    setSelectedOptions: () => {},
-    fullName: "",
-    setFullName: () => {},
-    age: 1,
-    setAge: () => {},
-    skills: [""],
-    setSkills: () => {}
+    setSelectedOptions: () => {}
 })
 
 
  const StateContext : React.FC<IAppContextProps> = ({children}) => {
-    const [user, setUser] = useState<IUser[]>([])
-    const[selectedOptions, setSelectedOptions] = useState<number[]>([])
-    const [fullName, setFullName] = useState<string>("")
-    const [age, setAge] = useState<number>(0)
-    const [skills,setSkills] = useState<string[]>([])
-
-    
+    const [users, setUsers] = useState<IUser[]>([])
+    const [user, setUser] = useState<IUser>({id: 1, fullName: "", age: 1, skills: [""] })
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     return (
         <AppContext.Provider 
-          value={{user, setUser, selectedOptions, setSelectedOptions, fullName, 
-                  setFullName, age, setAge , skills, setSkills}}>
+          value={{users, setUsers, user, setUser, selectedOptions, setSelectedOptions}}>
             {children}
         </AppContext.Provider>
     )

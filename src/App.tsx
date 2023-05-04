@@ -1,11 +1,12 @@
 import React from "react";
-import { Navigate, useRoutes} from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import StateContext from "./hooks/stateContext";
-import UserForm from "./components/userForm";
-import UsersTable from "./components/usersTable";
-import NotFound from "./components/not-found";
+import UserForm from "./pages/userForm";
+import UsersTable from "./pages/usersTable";
+import NotFound from "./pages/notFound";
 
 const App : React.FC = () => {
+  
   const router = useRoutes([
     {
      path: "/" , element: <UserForm />,

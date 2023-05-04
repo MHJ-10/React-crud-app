@@ -1,4 +1,4 @@
-import notFound from "../../public/images/not-found.png"
+import notFound from "/images/not-found.png"
 import { Image } from "react-bootstrap";
 
 const NotFound = () => {
